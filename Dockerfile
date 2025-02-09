@@ -78,7 +78,7 @@ ENV PATH="$PATH:~/.cargo/bin"
 # # Install nightly rust.
 RUN ~/.cargo/bin/rustup install nightly
 
-ENV RUST_BACKTRACE=1
+ENV RUST_BACKTRACE=full
 #build the fuzzer
 WORKDIR /fuzz/VirtFuzz
 RUN ~/.cargo/bin/cargo build --release --workspace
