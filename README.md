@@ -7,7 +7,13 @@ make
 ./run.sh
 ```
 
-Then once you are in the container you can 
+Then once you are in the container you can execute the last two lines of the code block at https://github.com/WesleySoftware/VirtFuzz/blob/main/README.md#fuzzer (without sudo of course)
+```sh
+mkdir -p /dev/shm/virtfuzz-cache
+./target/release/virtfuzz-fuzz --cache /dev/shm/virtfuzz-cache --device-definition device-definitions/hwsim-scan.json --stages standard --cores 1
+```
+
+Feel free to remove the `--cores` flag to let the fuzzer just eat your entire CPU
 
 ## Troubleshooting
 ### The fuzzer is crashing because the VM is timing out!
@@ -24,6 +30,8 @@ To troubleshoot this, try invoking the VM with QEMU directly without the fuzzer.
     -kernel $KERNEL
 ```
 If that does not work, troubleshoot your setup to ensure QEMU is able to boot the Syzkallered VM.
+
+Often if the fuzzer crashes it doesn't clean up qemu processes, so you can run `pkill -9 qemu-syst` to free them up.
 
 ## FAQ
 Q: Why are you running debootstrap outside the container?
