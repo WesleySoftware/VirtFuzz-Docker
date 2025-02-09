@@ -14,6 +14,9 @@ RUN apt-get update \
     meson \
     ninja-build
 
+#For debugging
+RUN apt install -y lsof
+
 RUN mkdir -p /fuzz
 COPY VirtFuzz /fuzz/VirtFuzz
 #set the bullseye patched image
