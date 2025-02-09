@@ -33,6 +33,20 @@ If that does not work, troubleshoot your setup to ensure QEMU is able to boot th
 
 Often if the fuzzer crashes it doesn't clean up qemu processes, so you can run `pkill -9 qemu-syst` to free them up.
 
+I have also had the experience where it will work without KVM (I think my kernel is too new for their qemu) and the following modified command has worked
+```sh
+./target/release/virtfuzz-fuzz \
+    --cache /dev/shm/virtfuzz-cache \
+    --device-definition device-definitions/hwsim-scan.json \
+    --stages standard \
+    --cores 1 \
+    --use-hwsim-input \
+    --enable-qemu-logging \
+    --single-thread \
+    --disable-kvm \
+    --timeout 1000ms
+```
+
 ## FAQ
 Q: Why are you running debootstrap outside the container?
 
