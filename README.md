@@ -46,6 +46,7 @@ I have also had the experience where it will work without KVM using the followin
     --disable-kvm \
     --timeout 1000ms
 ```
+Finally, on recent kernel versions I have had issues getting it to work in the docker container at all. In which case, you can still use the Dockerfile as a blueprint of what to do :)
 
 ## FAQ
 Q: Why are you running debootstrap outside the container?
